@@ -1,9 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import HeroSection from "@/components/hero/HeroSection";
 import Link from "next/link";
-import { BookOpen, Brain, Sparkles, Target, ArrowRight } from "lucide-react";
+import { BookOpen, Brain, Sparkles, Target, ArrowRight, Bookmark } from "lucide-react";
 import ProgressBar from "@/components/ui/ProgressBar";
+import { getSubjectProgress } from "@/lib/progress";
+import { subjects } from "@/lib/subjects";
 
 const features = [
   {
@@ -13,7 +16,7 @@ const features = [
     href: "/subjects",
   },
   {
-    icon: Target,
+    icon: Bookmark,
     title: "PYQs & Practice",
     desc: "Previous year questions with modular paper generator.",
     href: "/aids",
@@ -33,6 +36,21 @@ const features = [
 ];
 
 export default function Home() {
+  const [progressData, setProgressData] = useState<{ name: string; id: string; pct: number; total: number }[]>([]);
+
+  useEffect(() => {
+    const data = subjects.map((s) => {
+      const totalChapters = s.standards.reduce((sum, std) => sum + std.chapters.length, 0);
+      return {
+        name: s.title,
+        id: s.id,
+        pct: getSubjectProgress(s.id, totalChapters),
+        total: totalChapters,
+      };
+    });
+    setProgressData(data);
+  }, []);
+
   return (
     <>
       <HeroSection />
@@ -63,20 +81,23 @@ export default function Home() {
             </Link>
           </div>
           <div className="space-y-4">
-            {[
-              { name: "Physics", pct: 35 },
-              { name: "Chemistry", pct: 22 },
-              { name: "Mathematics", pct: 48 },
-              { name: "Biology", pct: 15 },
-            ].map((s) => (
+            {progressData.map((s) => (
               <div key={s.name} className="flex items-center gap-4">
                 <span className="font-sans text-xs uppercase tracking-wider w-20 text-[#8B7D6B] dark:text-[#7A6F8A]">
                   {s.name}
                 </span>
                 <ProgressBar value={s.pct} max={100} />
+                <span className="font-sans text-xs text-[#8B7D6B] dark:text-[#7A6F8A] w-16 text-right">
+                  {s.pct}%
+                </span>
               </div>
             ))}
           </div>
+          {progressData.every((s) => s.pct === 0) && (
+            <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A] italic mt-3">
+              No progress yet. Start marking chapters as complete from any subject page.
+            </p>
+          )}
         </div>
       </section>
 
