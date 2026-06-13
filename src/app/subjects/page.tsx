@@ -15,7 +15,7 @@ export default function SubjectsPage() {
             <Link
               key={subject.id}
               href={`/subjects/${subject.id}`}
-              className="group p-6 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0] dark:bg-[#232339] hover:border-[#B84A3A] dark:hover:border-[#D4735E] transition-all"
+              className="group p-6 glass-card hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] transition-all"
             >
               <div className="flex items-start justify-between mb-4">
                 <span className="text-3xl">{subject.icon}</span>

@@ -61,7 +61,7 @@ export default function Home() {
             <Link
               key={f.title}
               href={f.href}
-              className="group p-5 bg-[#F0EBE0] dark:bg-[#232339] border border-[#D4C9B8] dark:border-[#3A3545] hover:border-[#B84A3A] dark:hover:border-[#D4735E] transition-all"
+              className="group p-5 glass-card hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] transition-all"
             >
               <f.icon size={20} className="text-[#B84A3A] dark:text-[#D4735E] mb-3" />
               <h3 className="font-heading text-lg italic mb-1">{f.title}</h3>
@@ -73,7 +73,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-        <div className="border-t border-[#D4C9B8] dark:border-[#3A3545] pt-10">
+        <div className="glass-card p-6 sm:p-8">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-heading text-2xl italic">Your Progress</h2>
             <Link href="/subjects" className="text-sm font-sans text-[#B84A3A] dark:text-[#D4735E] hover:underline">
@@ -102,7 +102,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-        <div className="border border-[#D4C9B8] dark:border-[#3A3545] p-8 text-center">
+        <div className="glass-card p-8 text-center">
           <p className="font-heading text-lg italic text-[#8B7D6B] dark:text-[#7A6F8A]">
             &ldquo;Study not for marks, but for understanding.
             <br />

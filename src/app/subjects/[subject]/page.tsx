@@ -66,7 +66,7 @@ export default function SubjectPage() {
         </div>
         <p className="text-[#8B7D6B] dark:text-[#7A6F8A] mb-6">{subject.description}</p>
 
-        <div className="mb-8 p-4 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0] dark:bg-[#232339]">
+        <div className="mb-8 p-4 glass-card">
           <div className="flex items-center justify-between mb-2">
             <span className="font-sans text-xs uppercase tracking-wider text-[#8B7D6B] dark:text-[#7A6F8A]">
               Overall Progress
@@ -103,7 +103,7 @@ export default function SubjectPage() {
                     return (
                       <div
                         key={ch.id}
-                        className="flex items-center justify-between p-3 pl-4 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0]/50 dark:bg-[#232339]/50 hover:border-[#B84A3A] dark:hover:border-[#D4735E] group transition-all"
+                        className="flex items-center justify-between p-3 pl-4 glass-card hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] group transition-all"
                       >
                         <button
                           onClick={() => handleToggle(ch.id)}

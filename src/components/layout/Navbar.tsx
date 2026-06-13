@@ -16,8 +16,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: "var(--nav-bg)" }}>
-      <div className="backdrop-blur-sm border-b border-[#D4C9B8] dark:border-[#3A3545]">
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      <div className="glass-nav">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
           <Link href="/" className="flex items-center gap-2 font-heading text-lg italic tracking-tight">
             <span className="text-[#B84A3A] dark:text-[#D4735E]">↟</span>
@@ -49,7 +49,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden border-b border-[#D4C9B8] dark:border-[#3A3545] bg-[#F5F0E8] dark:bg-[#1A1A2E] backdrop-blur-sm">
+        <div className="md:hidden glass-nav">
           <div className="px-4 py-3 space-y-2">
             {navLinks.map((link) => (
               <Link

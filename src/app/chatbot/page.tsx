@@ -52,7 +52,7 @@ export default function ChatbotPage() {
           Your study buddy. Ask anything about Physics, Chemistry, Maths, or Biology.
         </p>
 
-        <div className="border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0] dark:bg-[#232339] min-h-[60vh] flex flex-col">
+        <div className="glass-card min-h-[60vh] flex flex-col">
           <div className="flex-1 p-4 space-y-4 overflow-y-auto max-h-[55vh]">
             {messages.length === 0 && (
               <div className="text-center py-8">
@@ -62,7 +62,7 @@ export default function ChatbotPage() {
                     <button
                       key={s}
                       onClick={() => handleSend(s)}
-                      className="text-xs font-sans px-3 py-1.5 border border-[#D4C9B8] dark:border-[#3A3545] hover:border-[#B84A3A] dark:hover:border-[#D4735E] text-[#5C4F3F] dark:text-[#B5A88A] transition-colors"
+                      className="text-xs font-sans px-3 py-1.5 glass hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] text-[#5C4F3F] dark:text-[#B5A88A] transition-colors"
                     >
                       {s}
                     </button>
@@ -77,7 +77,7 @@ export default function ChatbotPage() {
                   className={`max-w-[80%] p-3 text-sm ${
                     m.role === "user"
                       ? "bg-[#B84A3A] text-white"
-                      : "bg-[#E5DED0] dark:bg-[#2A2A3E] text-[#2D2D2D] dark:text-[#EAE0C8]"
+                      : "glass text-[#2D2D2D] dark:text-[#EAE0C8]"
                   }`}
                 >
                   {m.content}
@@ -87,7 +87,7 @@ export default function ChatbotPage() {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#E5DED0] dark:bg-[#2A2A3E] p-3 text-sm text-[#8B7D6B] dark:text-[#7A6F8A] italic">
+                <div className="glass p-3 text-sm text-[#8B7D6B] dark:text-[#7A6F8A] italic">
                   Thinking...
                 </div>
               </div>

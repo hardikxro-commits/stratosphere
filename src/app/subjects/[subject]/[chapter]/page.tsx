@@ -59,13 +59,13 @@ export default async function ChapterPage({
           </span>
         </div>
 
-        <div className="notebook-line p-6 rounded-sm border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0]/50 dark:bg-[#232339]/50 min-h-[50vh]">
+        <div className="notebook-line p-6 rounded-sm glass-card min-h-[50vh]">
           <p className="text-[#8B7D6B] dark:text-[#7A6F8A] italic mb-6">
             Chapter notes coming soon. This page will contain concept-wise summaries, key formulas, and important questions.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-            <div className="p-4 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F5F0E8] dark:bg-[#1A1A2E]">
+            <div className="p-4 glass">
               <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
                 <span className="text-[#B84A3A] dark:text-[#D4735E]">📖</span>
                 Theory Notes
@@ -75,7 +75,7 @@ export default async function ChapterPage({
               </p>
             </div>
 
-            <div className="p-4 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F5F0E8] dark:bg-[#1A1A2E]">
+            <div className="p-4 glass">
               <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
                 <span className="text-[#D4A843]">📝</span>
                 PYQs &amp; Practice
@@ -86,7 +86,7 @@ export default async function ChapterPage({
             </div>
 
             {foundChapter.formulaCount !== undefined && foundChapter.formulaCount > 0 && (
-              <div className="p-4 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F5F0E8] dark:bg-[#1A1A2E]">
+              <div className="p-4 glass">
                 <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
                   <span className="text-[#4A7C59]">📐</span>
                   Formulas
@@ -97,7 +97,7 @@ export default async function ChapterPage({
               </div>
             )}
 
-            <div className="p-4 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F5F0E8] dark:bg-[#1A1A2E]">
+            <div className="p-4 glass">
               <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
                 <span className="text-[#4A6FA5]">🎯</span>
                 Quick Quiz

@@ -59,7 +59,7 @@ export default function AidsPage() {
           {aids.map((aid) => (
             <div
               key={aid.title}
-              className="p-6 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0] dark:bg-[#232339]"
+              className="p-6 glass-card"
             >
               <aid.icon size={24} style={{ color: aid.color }} className="mb-3" />
               <div className="flex items-center justify-between mb-2">
@@ -79,7 +79,7 @@ export default function AidsPage() {
           ))}
         </div>
 
-        <div className="mt-12 p-6 border border-[#D4C9B8] dark:border-[#3A3545] bg-[#F0EBE0] dark:bg-[#232339] text-center">
+        <div className="mt-12 p-6 glass-card text-center">
           <p className="font-heading text-lg italic text-[#8B7D6B] dark:text-[#7A6F8A]">
             More study tools are being built. All features will always be free.
           </p>
