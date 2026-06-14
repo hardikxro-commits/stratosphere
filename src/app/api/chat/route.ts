@@ -1,7 +1,8 @@
-import Groq from "groq-sdk";
 import { NextResponse } from "next/server";
 
-const groqApiKey = process.env.GROQ_API_KEY || "";
+export const runtime = "edge";
+
+const GROQ_API_KEY = process.env.GROQ_API_KEY || "";
 
 const SYSTEM_PROMPT = `You are a study assistant for Maharashtra Board 11th and 12th Science students (Physics, Chemistry, Maths, Biology). 
 
@@ -17,35 +18,51 @@ export async function POST(req: Request) {
   const { messages }: { messages: { role: "user" | "assistant"; content: string }[] } = await req.json();
 
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
-    return NextResponse.json({ error: "no messages" }, { status: 400 });
+    return NextResponse.json({ content: "No messages provided." }, { status: 400 });
   }
 
-  if (!groqApiKey) {
+  if (!GROQ_API_KEY) {
     return NextResponse.json({
-      role: "assistant",
       content: "Hey! I'm in demo mode right now. Add a **Groq API key** in your `.env.local` file to get AI-powered answers. For now, try the suggestion buttons above — they have pre-written responses for common topics!",
     });
   }
 
   try {
-    const groq = new Groq({ apiKey: groqApiKey });
-    const chatMessages = [
-      { role: "system" as const, content: SYSTEM_PROMPT },
-      ...messages.map((m) => ({ role: m.role as "user" | "assistant", content: m.content })),
-    ];
-
-    const completion = await groq.chat.completions.create({
+    const body = {
       model: "llama-3.3-70b-versatile",
-      messages: chatMessages,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        ...messages.map((m: { role: string; content: string }) => ({
+          role: m.role,
+          content: m.content,
+        })),
+      ],
       temperature: 0.7,
       max_tokens: 1024,
+    };
+
+    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${GROQ_API_KEY}`,
+      },
+      body: JSON.stringify(body),
     });
 
-    const reply = completion.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
-    return NextResponse.json({ role: "assistant", content: reply });
-  } catch (e) {
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("Groq API error:", res.status, errText);
+      return NextResponse.json({
+        content: "Oops! Something went wrong with the AI service. Please try again.",
+      });
+    }
+
+    const data: { choices?: { message?: { content?: string } }[] } = await res.json();
+    const reply = data.choices?.[0]?.message?.content || "Sorry, I couldn't generate a response.";
+    return NextResponse.json({ content: reply });
+  } catch {
     return NextResponse.json({
-      role: "assistant",
       content: "Oops! Something went wrong. Please try again in a moment.",
     });
   }
