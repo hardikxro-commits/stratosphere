@@ -28,8 +28,8 @@ export default function SubjectPage() {
   if (!subject) {
     return (
       <div className="pt-24 pb-16 text-center">
-        <p className="text-[#8B7D6B] dark:text-[#7A6F8A]">Subject not found.</p>
-        <Link href="/subjects" className="text-[#B84A3A] dark:text-[#D4735E] hover:underline font-sans text-sm mt-4 inline-block">
+        <p className="text-gray-400">Subject not found.</p>
+        <Link href="/subjects" className="text-white hover:underline font-sans text-sm mt-4 inline-block">
           ← All Subjects
         </Link>
       </div>
@@ -55,29 +55,29 @@ export default function SubjectPage() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <Link
           href="/subjects"
-          className="inline-flex items-center gap-1 text-sm font-sans text-[#8B7D6B] dark:text-[#7A6F8A] hover:text-[#B84A3A] dark:hover:text-[#D4735E] mb-6 transition-colors"
+          className="inline-flex items-center gap-1 text-sm font-sans text-gray-400 hover:text-white mb-6 transition-colors"
         >
           ← All Subjects
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <span className="text-3xl">{subject.icon}</span>
-          <h1 className="font-heading text-4xl italic">{subject.title}</h1>
+          <h1 className="font-heading text-4xl">{subject.title}</h1>
         </div>
-        <p className="text-[#8B7D6B] dark:text-[#7A6F8A] mb-6">{subject.description}</p>
+        <p className="text-gray-400 mb-6">{subject.description}</p>
 
-        <div className="mb-8 p-4 glass-card">
+        <div className="mb-8 p-4 card">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-sans text-xs uppercase tracking-wider text-[#8B7D6B] dark:text-[#7A6F8A]">
+            <span className="font-sans text-xs uppercase tracking-wider text-gray-400">
               Overall Progress
             </span>
-            <span className="font-sans text-xs text-[#B84A3A] dark:text-[#D4735E]">
+            <span className="font-sans text-xs text-white">
               {Math.round(totalChapters > 0 ? (Object.values(completed).filter(Boolean).length / totalChapters) * 100 : 0)}%
             </span>
           </div>
-          <div className="h-3 bg-[#D4C9B8] dark:bg-[#3A3545] rounded-full overflow-hidden">
+          <div className="h-3 progress-track">
             <div
-              className="h-full bg-[#B84A3A] dark:bg-[#D4735E] rounded-full transition-all duration-500"
+              className="h-full progress-fill"
               style={{ width: `${Math.round(totalChapters > 0 ? (Object.values(completed).filter(Boolean).length / totalChapters) * 100 : 0)}%` }}
             />
           </div>
@@ -89,10 +89,10 @@ export default function SubjectPage() {
             return (
               <div key={std.std}>
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="font-heading text-2xl italic">
+                  <h2 className="font-heading text-2xl">
                     Standard {std.std}
                   </h2>
-                  <span className="font-sans text-xs text-[#8B7D6B] dark:text-[#7A6F8A]">
+                  <span className="font-sans text-xs text-gray-400">
                     {stdCompleted}/{std.chapters.length} done
                   </span>
                 </div>
@@ -103,27 +103,27 @@ export default function SubjectPage() {
                     return (
                       <div
                         key={ch.id}
-                        className="flex items-center justify-between p-3 pl-4 glass-card hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] group transition-all"
+                        className="flex items-center justify-between p-3 pl-4 card"
                       >
                         <button
                           onClick={() => handleToggle(ch.id)}
                           className="flex items-center gap-3 flex-1 text-left"
                         >
                           {done ? (
-                            <CheckCircle size={18} className="text-[#4A7C59] shrink-0" />
+                            <CheckCircle size={18} className="text-white shrink-0" />
                           ) : (
-                            <Circle size={18} className="text-[#D4C9B8] dark:text-[#3A3545] shrink-0" />
+                            <Circle size={18} className="text-gray-600 shrink-0" />
                           )}
                           <div>
-                            <h3 className={`font-heading italic text-sm ${done ? "line-through text-[#8B7D6B] dark:text-[#5A4F6A]" : "group-hover:text-[#B84A3A] dark:group-hover:text-[#D4735E]"} transition-colors`}>
+                            <h3 className={`font-heading text-sm ${done ? "line-through text-gray-500" : "group-hover:text-white"} transition-colors`}>
                               {ch.number}. {ch.title}
                             </h3>
-                            <p className="text-xs text-[#8B7D6B] dark:text-[#7A6F8A]">{ch.description}</p>
+                            <p className="text-xs text-gray-400">{ch.description}</p>
                           </div>
                         </button>
                         <Link
                           href={`/subjects/${subject.id}/${ch.id}`}
-                          className="text-xs font-sans text-[#B84A3A] dark:text-[#D4735E] hover:underline ml-4 shrink-0"
+                          className="text-xs font-sans text-white hover:underline ml-4 shrink-0"
                         >
                           Open →
                         </Link>

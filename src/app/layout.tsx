@@ -44,20 +44,6 @@ export default function RootLayout({
       className={`${playfair.variable} ${sourceSerif.variable} ${inter.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem("theme");
-                if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                  document.documentElement.classList.add("dark");
-                }
-              } catch(e) {}
-            `,
-          }}
-        />
-      </head>
       <body className="min-h-screen flex flex-col font-serif">
         <Navbar />
         <main className="flex-1">{children}</main>

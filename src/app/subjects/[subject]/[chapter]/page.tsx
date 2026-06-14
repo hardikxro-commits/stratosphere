@@ -40,69 +40,69 @@ export default async function ChapterPage({
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <Link
           href={`/subjects/${subject.id}`}
-          className="inline-flex items-center gap-1 text-sm font-sans text-[#8B7D6B] dark:text-[#7A6F8A] hover:text-[#B84A3A] dark:hover:text-[#D4735E] mb-6 transition-colors"
+          className="inline-flex items-center gap-1 text-sm font-sans text-gray-400 hover:text-white mb-6 transition-colors"
         >
           ← {subject.title} — Std {foundStd}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
           <span className="text-2xl">{subject.icon}</span>
-          <h1 className="font-heading text-3xl italic">{foundChapter.title}</h1>
+          <h1 className="font-heading text-3xl">{foundChapter.title}</h1>
         </div>
 
         <div className="flex items-center gap-3 mt-2 mb-8">
-          <span className="font-sans text-xs text-[#B84A3A] dark:text-[#D4735E] border border-[#B84A3A] dark:border-[#D4735E] px-2 py-0.5">
+          <span className="font-sans text-xs text-white border border-white/30 px-2 py-0.5">
             Ch. {foundChapter.number}
           </span>
-          <span className="font-sans text-xs text-[#8B7D6B] dark:text-[#7A6F8A]">
+          <span className="font-sans text-xs text-gray-400">
             Std {foundStd}
           </span>
         </div>
 
-        <div className="notebook-line p-6 rounded-sm glass-card min-h-[50vh]">
-          <p className="text-[#8B7D6B] dark:text-[#7A6F8A] italic mb-6">
+        <div className="card p-6 min-h-[50vh]">
+          <p className="text-gray-400 italic mb-6">
             Chapter notes coming soon. This page will contain concept-wise summaries, key formulas, and important questions.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-            <div className="p-4 glass">
-              <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
-                <span className="text-[#B84A3A] dark:text-[#D4735E]">📖</span>
+            <div className="p-4 bg-[#111111] border border-[#333333]">
+              <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+                <span className="text-white">📖</span>
                 Theory Notes
               </h3>
-              <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A]">
+              <p className="text-sm text-gray-400">
                 Concept-wise summaries with key points.
               </p>
             </div>
 
-            <div className="p-4 glass">
-              <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
-                <span className="text-[#D4A843]">📝</span>
-                PYQs &amp; Practice
+            <div className="p-4 bg-[#111111] border border-[#333333]">
+              <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+                <span className="text-white">📝</span>
+                PYQs & Practice
               </h3>
-              <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A]">
+              <p className="text-sm text-gray-400">
                 Previous year questions with solutions.
               </p>
             </div>
 
             {foundChapter.formulaCount !== undefined && foundChapter.formulaCount > 0 && (
-              <div className="p-4 glass">
-                <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
-                  <span className="text-[#4A7C59]">📐</span>
+              <div className="p-4 bg-[#111111] border border-[#333333]">
+                <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+                  <span className="text-white">📐</span>
                   Formulas
                 </h3>
-                <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A]">
+                <p className="text-sm text-gray-400">
                   {foundChapter.formulaCount} key formulas to master.
                 </p>
               </div>
             )}
 
-            <div className="p-4 glass">
-              <h3 className="font-heading text-lg italic mb-2 flex items-center gap-2">
-                <span className="text-[#4A6FA5]">🎯</span>
+            <div className="p-4 bg-[#111111] border border-[#333333]">
+              <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+                <span className="text-white">🎯</span>
                 Quick Quiz
               </h3>
-              <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A]">
+              <p className="text-sm text-gray-400">
                 Test your understanding with MCQs.
               </p>
             </div>

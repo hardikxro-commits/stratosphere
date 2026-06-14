@@ -28,7 +28,6 @@ export default function ChatbotPage() {
     setMessages((m) => [...m, { role: "user", content: msg }]);
     setLoading(true);
 
-    // For now, use a mock response since we need an API key
     setTimeout(() => {
       setMessages((m) => [
         ...m,
@@ -45,24 +44,24 @@ export default function ChatbotPage() {
     <div className="pt-24 pb-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="flex items-center gap-3 mb-2">
-          <Sparkles className="text-[#B84A3A] dark:text-[#D4735E]" size={24} />
-          <h1 className="font-heading text-4xl italic">Ask AI</h1>
+          <Sparkles className="text-white" size={24} />
+          <h1 className="font-heading text-4xl">Ask AI</h1>
         </div>
-        <p className="text-[#8B7D6B] dark:text-[#7A6F8A] mb-8">
+        <p className="text-gray-400 mb-8">
           Your study buddy. Ask anything about Physics, Chemistry, Maths, or Biology.
         </p>
 
-        <div className="glass-card min-h-[60vh] flex flex-col">
+        <div className="card min-h-[60vh] flex flex-col">
           <div className="flex-1 p-4 space-y-4 overflow-y-auto max-h-[55vh]">
             {messages.length === 0 && (
               <div className="text-center py-8">
-                <p className="text-[#8B7D6B] dark:text-[#7A6F8A] italic mb-4">Ask me anything about your syllabus.</p>
+                <p className="text-gray-400 italic mb-4">Ask me anything about your syllabus.</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {SUGGESTIONS.map((s) => (
                     <button
                       key={s}
                       onClick={() => handleSend(s)}
-                      className="text-xs font-sans px-3 py-1.5 glass hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] text-[#5C4F3F] dark:text-[#B5A88A] transition-colors"
+                      className="text-xs font-sans px-3 py-1.5 bg-[#111111] border border-[#333333] hover:border-white/50 text-gray-300 transition-colors"
                     >
                       {s}
                     </button>
@@ -76,8 +75,8 @@ export default function ChatbotPage() {
                 <div
                   className={`max-w-[80%] p-3 text-sm ${
                     m.role === "user"
-                      ? "bg-[#B84A3A] text-white"
-                      : "glass text-[#2D2D2D] dark:text-[#EAE0C8]"
+                      ? "bg-white text-black"
+                      : "bg-[#111111] border border-[#333333] text-white"
                   }`}
                 >
                   {m.content}
@@ -87,7 +86,7 @@ export default function ChatbotPage() {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="glass p-3 text-sm text-[#8B7D6B] dark:text-[#7A6F8A] italic">
+                <div className="bg-[#111111] border border-[#333333] p-3 text-sm text-gray-400 italic">
                   Thinking...
                 </div>
               </div>
@@ -95,18 +94,18 @@ export default function ChatbotPage() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="border-t border-[#D4C9B8] dark:border-[#3A3545] p-3 flex gap-2">
+          <div className="border-t border-[#333333] p-3 flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Type your question..."
-              className="flex-1 bg-transparent border-none outline-none text-sm font-serif placeholder:text-[#8B7D6B] dark:placeholder:text-[#7A6F8A]"
+              className="flex-1 bg-transparent border-none outline-none text-sm font-serif text-white placeholder:text-gray-600"
             />
             <button
               onClick={() => handleSend()}
               disabled={loading || !input.trim()}
-              className="p-2 text-[#B84A3A] dark:text-[#D4735E] hover:bg-[#E5DED0] dark:hover:bg-[#2A2A3E] transition-colors disabled:opacity-40"
+              className="p-2 text-white hover:bg-[#333333] transition-colors disabled:opacity-40"
             >
               <Send size={16} />
             </button>

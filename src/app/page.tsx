@@ -61,40 +61,40 @@ export default function Home() {
             <Link
               key={f.title}
               href={f.href}
-              className="group p-5 glass-card hover:!border-[#B84A3A] dark:hover:!border-[#D4735E] transition-all"
+              className="group p-5 card"
             >
-              <f.icon size={20} className="text-[#B84A3A] dark:text-[#D4735E] mb-3" />
-              <h3 className="font-heading text-lg italic mb-1">{f.title}</h3>
-              <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A] leading-relaxed">{f.desc}</p>
-              <ArrowRight size={14} className="mt-3 text-[#B84A3A] dark:text-[#D4735E] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <f.icon size={20} className="text-white mb-3" />
+              <h3 className="font-heading text-lg mb-1">{f.title}</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">{f.desc}</p>
+              <ArrowRight size={14} className="mt-3 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
           ))}
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-        <div className="glass-card p-6 sm:p-8">
+        <div className="card p-6 sm:p-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-heading text-2xl italic">Your Progress</h2>
-            <Link href="/subjects" className="text-sm font-sans text-[#B84A3A] dark:text-[#D4735E] hover:underline">
+            <h2 className="font-heading text-2xl">Your Progress</h2>
+            <Link href="/subjects" className="text-sm font-sans text-white hover:underline">
               View all subjects →
             </Link>
           </div>
           <div className="space-y-4">
             {progressData.map((s) => (
               <div key={s.name} className="flex items-center gap-4">
-                <span className="font-sans text-xs uppercase tracking-wider w-20 text-[#8B7D6B] dark:text-[#7A6F8A]">
+                <span className="font-sans text-xs uppercase tracking-wider w-20 text-gray-400">
                   {s.name}
                 </span>
                 <ProgressBar value={s.pct} max={100} />
-                <span className="font-sans text-xs text-[#8B7D6B] dark:text-[#7A6F8A] w-16 text-right">
+                <span className="font-sans text-xs text-gray-400 w-16 text-right">
                   {s.pct}%
                 </span>
               </div>
             ))}
           </div>
           {progressData.every((s) => s.pct === 0) && (
-            <p className="text-sm text-[#8B7D6B] dark:text-[#7A6F8A] italic mt-3">
+            <p className="text-sm text-gray-400 italic mt-3">
               No progress yet. Start marking chapters as complete from any subject page.
             </p>
           )}
@@ -102,8 +102,8 @@ export default function Home() {
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-        <div className="glass-card p-8 text-center">
-          <p className="font-heading text-lg italic text-[#8B7D6B] dark:text-[#7A6F8A]">
+        <div className="card p-8 text-center">
+          <p className="font-heading text-lg text-gray-400">
             &ldquo;Study not for marks, but for understanding.
             <br />
             Marks will follow.&rdquo;
