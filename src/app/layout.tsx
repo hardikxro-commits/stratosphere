@@ -3,6 +3,7 @@ import { Playfair_Display, Source_Serif_4, Inter, JetBrains_Mono } from "next/fo
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SessionProvider from "@/components/SessionProvider";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -45,9 +46,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col font-serif">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SessionProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

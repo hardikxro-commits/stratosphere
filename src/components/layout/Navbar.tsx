@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, MessageCircle, Beaker, Home, Menu, X } from "lucide-react";
+import { BookOpen, MessageCircle, Beaker, Home, Target, Menu, X } from "lucide-react";
 import { useState } from "react";
+import AuthButton from "@/components/AuthButton";
 
 const navLinks = [
   { href: "/", label: "Home", icon: Home },
   { href: "/subjects", label: "Subjects", icon: BookOpen },
+  { href: "/pyq", label: "PYQs", icon: Target },
   { href: "/formulas", label: "Formulas", icon: Beaker },
   { href: "/chatbot", label: "Ask AI", icon: MessageCircle },
 ];
@@ -33,6 +35,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          <AuthButton />
         </div>
 
         <button
@@ -58,6 +61,9 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <div className="px-1 py-2 border-t border-white/10 mt-1">
+              <AuthButton />
+            </div>
           </div>
         </div>
       )}

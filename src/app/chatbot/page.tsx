@@ -28,16 +28,26 @@ export default function ChatbotPage() {
     setMessages((m) => [...m, { role: "user", content: msg }]);
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [...messages, { role: "user", content: msg }],
+        }),
+      });
+      const data: { content?: string } = await res.json();
       setMessages((m) => [
         ...m,
-        {
-          role: "assistant",
-          content: getMockResponse(msg),
-        },
+        { role: "assistant", content: data.content || getMockResponse(msg) },
       ]);
-      setLoading(false);
-    }, 1000);
+    } catch {
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", content: getMockResponse(msg) },
+      ]);
+    }
+    setLoading(false);
   };
 
   return (

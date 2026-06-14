@@ -19,7 +19,7 @@ const features = [
     icon: Bookmark,
     title: "PYQs & Practice",
     desc: "Previous year questions with modular paper generator.",
-    href: "/aids",
+    href: "/pyq",
   },
   {
     icon: Brain,

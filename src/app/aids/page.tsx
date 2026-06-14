@@ -1,48 +1,50 @@
 import Link from "next/link";
-import { Brain, Target, Clock, Bookmark, BarChart3, Zap } from "lucide-react";
+import { Brain, Target, Clock, Bookmark, BarChart3, Zap, ArrowUpRight } from "lucide-react";
 
-const aids = [
+type AidItem = {
+  icon: typeof Brain;
+  title: string;
+  desc: string;
+  href?: string;
+  status?: string;
+};
+
+const aids: AidItem[] = [
   {
     icon: Target,
     title: "PYQ Bank",
-    desc: "Search and filter previous year questions by subject, chapter, year, and difficulty.",
-    status: "Coming soon",
-    color: "#FFFFFF",
+    desc: "Previous year board exam questions filtered by subject and year.",
+    href: "/pyq",
   },
   {
     icon: Brain,
     title: "Mock Tests",
     desc: "Timed tests with auto-scoring, accuracy tracking, and weak topic analysis.",
     status: "Coming soon",
-    color: "#FFFFFF",
   },
   {
     icon: Clock,
     title: "Study Planner",
     desc: "Enter your exam dates and get a personalized daily roadmap.",
     status: "Coming soon",
-    color: "#FFFFFF",
   },
   {
     icon: Bookmark,
     title: "Error Notebook",
     desc: "Save mistakes and review them with spaced repetition reminders.",
     status: "Coming soon",
-    color: "#FFFFFF",
   },
   {
     icon: BarChart3,
     title: "Analytics",
     desc: "Track accuracy, time spent, and improvement across subjects.",
     status: "Coming soon",
-    color: "#FFFFFF",
   },
   {
     icon: Zap,
     title: "Daily Challenge",
     desc: "10 quick questions every day to keep your mind sharp.",
     status: "Coming soon",
-    color: "#FFFFFF",
   },
 ];
 
@@ -56,27 +58,38 @@ export default function AidsPage() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {aids.map((aid) => (
-            <div
-              key={aid.title}
-              className="p-4 sm:p-6 card"
-            >
-              <aid.icon size={20} style={{ color: aid.color }} className="mb-2 sm:mb-3" />
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="font-heading text-base sm:text-lg">{aid.title}</h2>
-                <span
-                  className="font-sans text-2xs sm:text-xs px-2 py-0.5"
-                  style={{
-                    color: aid.color,
-                    border: `1px solid ${aid.color}`,
-                  }}
-                >
-                  {aid.status}
-                </span>
+          {aids.map((aid) => {
+            const content = (
+              <>
+                <aid.icon size={20} className="mb-2 sm:mb-3 text-white" />
+                <div className="flex items-center justify-between mb-2">
+                  <h2 className="font-heading text-base sm:text-lg">{aid.title}</h2>
+                  {"status" in aid ? (
+                    <span className="font-sans text-2xs sm:text-xs px-2 py-0.5 text-gray-500 border border-gray-600">
+                      {aid.status}
+                    </span>
+                  ) : (
+                    <ArrowUpRight size={16} className="text-gray-500" />
+                  )}
+                </div>
+                <p className="text-2xs sm:text-sm text-gray-400">{aid.desc}</p>
+              </>
+            );
+
+            if (aid.href) {
+              return (
+                <Link key={aid.title} href={aid.href} className="p-4 sm:p-6 card block hover:border-white/30 transition-colors">
+                  {content}
+                </Link>
+              );
+            }
+
+            return (
+              <div key={aid.title} className="p-4 sm:p-6 card">
+                {content}
               </div>
-              <p className="text-2xs sm:text-sm text-gray-400">{aid.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-10 sm:mt-12 p-4 sm:p-6 card text-center">

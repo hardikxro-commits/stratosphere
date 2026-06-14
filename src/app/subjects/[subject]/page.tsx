@@ -4,7 +4,8 @@ import { subjects, getSubject } from "@/lib/subjects";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { isChapterCompleted, toggleChapter, getSubjectProgress } from "@/lib/progress";
+import { isChapterCompleted, toggleChapter, getSubjectProgress, toggleChapterRemote } from "@/lib/progress";
+import { useSession } from "next-auth/react";
 import { CheckCircle, Circle } from "lucide-react";
 
 export default function SubjectPage() {
@@ -12,6 +13,7 @@ export default function SubjectPage() {
   const subjectId = params.subject as string;
   const subject = getSubject(subjectId);
 
+  const { data: session } = useSession();
   const [completed, setCompleted] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -40,6 +42,7 @@ export default function SubjectPage() {
   const progress = getSubjectProgress(subject.id, totalChapters);
 
   const handleToggle = (chapterId: string) => {
+    const was = completed[chapterId] ?? false;
     const updated = toggleChapter(subject.id, chapterId);
     const map: Record<string, boolean> = {};
     for (const std of subject.standards) {
@@ -48,6 +51,9 @@ export default function SubjectPage() {
       }
     }
     setCompleted({ ...map });
+    if (session?.user) {
+      toggleChapterRemote(subject.id, chapterId, !was);
+    }
   };
 
   return (
