@@ -51,31 +51,31 @@ export default function SubjectPage() {
   };
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-20 sm:pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <Link
           href="/subjects"
-          className="inline-flex items-center gap-1 text-sm font-sans text-gray-400 hover:text-white mb-6 transition-colors"
+          className="inline-flex items-center gap-1 text-xs sm:text-sm font-sans text-gray-400 hover:text-white mb-4 sm:mb-6 transition-colors min-h-[44px]"
         >
           ← All Subjects
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
-          <span className="text-3xl">{subject.icon}</span>
-          <h1 className="font-heading text-4xl">{subject.title}</h1>
+          <span className="text-2xl sm:text-3xl">{subject.icon}</span>
+          <h1 className="font-heading text-2xl sm:text-4xl">{subject.title}</h1>
         </div>
-        <p className="text-gray-400 mb-6">{subject.description}</p>
+        <p className="text-xs sm:text-base text-gray-400 mb-4 sm:mb-6">{subject.description}</p>
 
-        <div className="mb-8 p-4 card">
+        <div className="mb-6 sm:mb-8 p-3 sm:p-4 card">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-sans text-xs uppercase tracking-wider text-gray-400">
+            <span className="font-sans text-2xs sm:text-xs uppercase tracking-wider text-gray-400">
               Overall Progress
             </span>
-            <span className="font-sans text-xs text-white">
+            <span className="font-sans text-2xs sm:text-xs text-white">
               {Math.round(totalChapters > 0 ? (Object.values(completed).filter(Boolean).length / totalChapters) * 100 : 0)}%
             </span>
           </div>
-          <div className="h-3 progress-track">
+          <div className="h-2 sm:h-3 progress-track">
             <div
               className="h-full progress-fill"
               style={{ width: `${Math.round(totalChapters > 0 ? (Object.values(completed).filter(Boolean).length / totalChapters) * 100 : 0)}%` }}
@@ -83,47 +83,47 @@ export default function SubjectPage() {
           </div>
         </div>
 
-        <div className="space-y-10">
+        <div className="space-y-8 sm:space-y-10">
           {subject.standards.map((std) => {
             const stdCompleted = std.chapters.filter((ch) => completed[ch.id]).length;
             return (
               <div key={std.std}>
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="font-heading text-2xl">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <h2 className="font-heading text-xl sm:text-2xl">
                     Standard {std.std}
                   </h2>
-                  <span className="font-sans text-xs text-gray-400">
+                  <span className="font-sans text-2xs sm:text-xs text-gray-400">
                     {stdCompleted}/{std.chapters.length} done
                   </span>
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-px sm:space-y-1">
                   {std.chapters.map((ch) => {
                     const done = completed[ch.id] ?? false;
                     return (
                       <div
                         key={ch.id}
-                        className="flex items-center justify-between p-3 pl-4 card"
+                        className="card flex items-stretch overflow-hidden"
                       >
                         <button
                           onClick={() => handleToggle(ch.id)}
-                          className="flex items-center gap-3 flex-1 text-left"
+                          className="flex items-center gap-3 sm:gap-4 px-3 sm:px-4 py-3 sm:py-4 flex-1 text-left min-h-[52px] active:bg-[#2A2A2A] transition-colors"
                         >
                           {done ? (
-                            <CheckCircle size={18} className="text-white shrink-0" />
+                            <CheckCircle size={20} className="text-white shrink-0" />
                           ) : (
-                            <Circle size={18} className="text-gray-600 shrink-0" />
+                            <Circle size={20} className="text-gray-600 shrink-0" />
                           )}
-                          <div>
-                            <h3 className={`font-heading text-sm ${done ? "line-through text-gray-500" : "group-hover:text-white"} transition-colors`}>
+                          <div className="min-w-0">
+                            <h3 className={`font-heading text-xs sm:text-sm ${done ? "line-through text-gray-500" : ""} transition-colors truncate`}>
                               {ch.number}. {ch.title}
                             </h3>
-                            <p className="text-xs text-gray-400">{ch.description}</p>
+                            <p className="text-2xs sm:text-xs text-gray-400 truncate">{ch.description}</p>
                           </div>
                         </button>
                         <Link
                           href={`/subjects/${subject.id}/${ch.id}`}
-                          className="text-xs font-sans text-white hover:underline ml-4 shrink-0"
+                          className="flex items-center px-3 sm:px-4 text-xs font-sans text-white hover:bg-white/10 shrink-0 transition-colors min-h-[52px]"
                         >
                           Open →
                         </Link>

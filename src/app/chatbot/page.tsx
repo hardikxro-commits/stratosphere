@@ -41,27 +41,27 @@ export default function ChatbotPage() {
   };
 
   return (
-    <div className="pt-24 pb-16">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+    <div className="pt-20 sm:pt-24 pb-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col min-h-[calc(100vh-8rem)] sm:min-h-0">
         <div className="flex items-center gap-3 mb-2">
-          <Sparkles className="text-white" size={24} />
-          <h1 className="font-heading text-4xl">Ask AI</h1>
+          <Sparkles className="text-white" size={20} />
+          <h1 className="font-heading text-2xl sm:text-4xl">Ask AI</h1>
         </div>
-        <p className="text-gray-400 mb-8">
+        <p className="text-xs sm:text-base text-gray-400 mb-4 sm:mb-8">
           Your study buddy. Ask anything about Physics, Chemistry, Maths, or Biology.
         </p>
 
-        <div className="card min-h-[60vh] flex flex-col">
-          <div className="flex-1 p-4 space-y-4 overflow-y-auto max-h-[55vh]">
+        <div className="card flex-1 flex flex-col min-h-0">
+          <div className="flex-1 p-3 sm:p-4 space-y-4 overflow-y-auto max-h-[55vh] sm:max-h-[60vh]">
             {messages.length === 0 && (
-              <div className="text-center py-8">
-                <p className="text-gray-400 italic mb-4">Ask me anything about your syllabus.</p>
+              <div className="text-center py-6 sm:py-8">
+                <p className="text-xs sm:text-sm text-gray-400 italic mb-4">Ask me anything about your syllabus.</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {SUGGESTIONS.map((s) => (
                     <button
                       key={s}
                       onClick={() => handleSend(s)}
-                      className="text-xs font-sans px-3 py-1.5 bg-[#111111] border border-[#333333] hover:border-white/50 text-gray-300 transition-colors"
+                      className="text-2xs sm:text-xs font-sans px-3 py-2 sm:py-1.5 min-h-[36px] bg-[#111111] border border-[#333333] hover:border-white/50 text-gray-300 transition-colors"
                     >
                       {s}
                     </button>
@@ -73,7 +73,7 @@ export default function ChatbotPage() {
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[80%] p-3 text-sm ${
+                  className={`max-w-[85%] sm:max-w-[80%] p-3 text-xs sm:text-sm ${
                     m.role === "user"
                       ? "bg-white text-black"
                       : "bg-[#111111] border border-[#333333] text-white"
@@ -86,7 +86,7 @@ export default function ChatbotPage() {
 
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#111111] border border-[#333333] p-3 text-sm text-gray-400 italic">
+                <div className="bg-[#111111] border border-[#333333] p-3 text-xs sm:text-sm text-gray-400 italic">
                   Thinking...
                 </div>
               </div>
@@ -94,20 +94,20 @@ export default function ChatbotPage() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="border-t border-[#333333] p-3 flex gap-2">
+          <div className="border-t border-[#333333] p-2 sm:p-3 flex gap-2 items-end">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Type your question..."
-              className="flex-1 bg-transparent border-none outline-none text-sm font-serif text-white placeholder:text-gray-600"
+              className="flex-1 bg-transparent border-none outline-none text-xs sm:text-sm font-serif text-white py-2 placeholder:text-gray-600"
             />
             <button
               onClick={() => handleSend()}
               disabled={loading || !input.trim()}
-              className="p-2 text-white hover:bg-[#333333] transition-colors disabled:opacity-40"
+              className="flex items-center justify-center min-w-[44px] min-h-[44px] text-white hover:bg-[#333333] rounded-md transition-colors disabled:opacity-40"
             >
-              <Send size={16} />
+              <Send size={18} />
             </button>
           </div>
         </div>

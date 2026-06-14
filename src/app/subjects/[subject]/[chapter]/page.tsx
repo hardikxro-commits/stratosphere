@@ -36,73 +36,73 @@ export default async function ChapterPage({
   if (!foundChapter) notFound();
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-20 sm:pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <Link
           href={`/subjects/${subject.id}`}
-          className="inline-flex items-center gap-1 text-sm font-sans text-gray-400 hover:text-white mb-6 transition-colors"
+          className="inline-flex items-center gap-1 text-xs sm:text-sm font-sans text-gray-400 hover:text-white mb-4 sm:mb-6 transition-colors min-h-[44px]"
         >
           ← {subject.title} — Std {foundStd}
         </Link>
 
         <div className="flex items-center gap-3 mb-2">
-          <span className="text-2xl">{subject.icon}</span>
-          <h1 className="font-heading text-3xl">{foundChapter.title}</h1>
+          <span className="text-xl sm:text-2xl">{subject.icon}</span>
+          <h1 className="font-heading text-xl sm:text-3xl">{foundChapter.title}</h1>
         </div>
 
-        <div className="flex items-center gap-3 mt-2 mb-8">
-          <span className="font-sans text-xs text-white border border-white/30 px-2 py-0.5">
+        <div className="flex items-center gap-3 mt-2 mb-6 sm:mb-8">
+          <span className="font-sans text-2xs sm:text-xs text-white border border-white/30 px-2 py-0.5">
             Ch. {foundChapter.number}
           </span>
-          <span className="font-sans text-xs text-gray-400">
+          <span className="font-sans text-2xs sm:text-xs text-gray-400">
             Std {foundStd}
           </span>
         </div>
 
-        <div className="card p-6 min-h-[50vh]">
-          <p className="text-gray-400 italic mb-6">
+        <div className="card p-4 sm:p-6 min-h-[50vh]">
+          <p className="text-xs sm:text-sm text-gray-400 italic mb-4 sm:mb-6">
             Chapter notes coming soon. This page will contain concept-wise summaries, key formulas, and important questions.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-            <div className="p-4 bg-[#111111] border border-[#333333]">
-              <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
+            <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
+              <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
                 <span className="text-white">📖</span>
                 Theory Notes
               </h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-2xs sm:text-sm text-gray-400">
                 Concept-wise summaries with key points.
               </p>
             </div>
 
-            <div className="p-4 bg-[#111111] border border-[#333333]">
-              <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+            <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
+              <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
                 <span className="text-white">📝</span>
                 PYQs & Practice
               </h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-2xs sm:text-sm text-gray-400">
                 Previous year questions with solutions.
               </p>
             </div>
 
             {foundChapter.formulaCount !== undefined && foundChapter.formulaCount > 0 && (
-              <div className="p-4 bg-[#111111] border border-[#333333]">
-                <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+              <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
+                <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
                   <span className="text-white">📐</span>
                   Formulas
                 </h3>
-                <p className="text-sm text-gray-400">
+                <p className="text-2xs sm:text-sm text-gray-400">
                   {foundChapter.formulaCount} key formulas to master.
                 </p>
               </div>
             )}
 
-            <div className="p-4 bg-[#111111] border border-[#333333]">
-              <h3 className="font-heading text-lg mb-2 flex items-center gap-2">
+            <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
+              <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
                 <span className="text-white">🎯</span>
                 Quick Quiz
               </h3>
-              <p className="text-sm text-gray-400">
+              <p className="text-2xs sm:text-sm text-gray-400">
                 Test your understanding with MCQs.
               </p>
             </div>

@@ -56,54 +56,54 @@ export default function Home() {
       <HeroSection />
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 relative z-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {features.map((f) => (
             <Link
               key={f.title}
               href={f.href}
-              className="group p-5 card"
+              className="group p-4 sm:p-5 card min-h-[44px]"
             >
-              <f.icon size={20} className="text-white mb-3" />
-              <h3 className="font-heading text-lg mb-1">{f.title}</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">{f.desc}</p>
-              <ArrowRight size={14} className="mt-3 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+              <f.icon size={20} className="text-white mb-2 sm:mb-3" />
+              <h3 className="font-heading text-base sm:text-lg mb-1">{f.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">{f.desc}</p>
+              <ArrowRight size={14} className="mt-2 sm:mt-3 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-        <div className="card p-6 sm:p-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-heading text-2xl">Your Progress</h2>
-            <Link href="/subjects" className="text-sm font-sans text-white hover:underline">
-              View all subjects →
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16">
+        <div className="card p-4 sm:p-8">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <h2 className="font-heading text-xl sm:text-2xl">Your Progress</h2>
+            <Link href="/subjects" className="text-xs sm:text-sm font-sans text-white hover:underline">
+              View all
             </Link>
           </div>
           <div className="space-y-4">
             {progressData.map((s) => (
-              <div key={s.name} className="flex items-center gap-4">
-                <span className="font-sans text-xs uppercase tracking-wider w-20 text-gray-400">
+              <div key={s.name} className="flex items-center gap-2 sm:gap-4">
+                <span className="font-sans text-2xs sm:text-xs uppercase tracking-wider w-14 sm:w-20 shrink-0 text-gray-400">
                   {s.name}
                 </span>
                 <ProgressBar value={s.pct} max={100} />
-                <span className="font-sans text-xs text-gray-400 w-16 text-right">
+                <span className="font-sans text-2xs sm:text-xs text-gray-400 w-10 sm:w-16 text-right shrink-0">
                   {s.pct}%
                 </span>
               </div>
             ))}
           </div>
           {progressData.every((s) => s.pct === 0) && (
-            <p className="text-sm text-gray-400 italic mt-3">
+            <p className="text-xs sm:text-sm text-gray-400 italic mt-3">
               No progress yet. Start marking chapters as complete from any subject page.
             </p>
           )}
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16">
-        <div className="card p-8 text-center">
-          <p className="font-heading text-lg text-gray-400">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16">
+        <div className="card p-6 sm:p-8 text-center">
+          <p className="font-heading text-base sm:text-lg text-gray-400">
             &ldquo;Study not for marks, but for understanding.
             <br />
             Marks will follow.&rdquo;
