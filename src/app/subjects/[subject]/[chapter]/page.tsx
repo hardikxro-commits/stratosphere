@@ -1,6 +1,8 @@
-import { subjects, getSubject, getChapter } from "@/lib/subjects";
+import { subjects, getSubject } from "@/lib/subjects";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getChapterContent } from "@/content";
+import { Lightbulb, Target } from "lucide-react";
 
 export function generateStaticParams() {
   const params: { subject: string; chapter: string }[] = [];
@@ -35,6 +37,8 @@ export default async function ChapterPage({
   }
   if (!foundChapter) notFound();
 
+  const content = getChapterContent(subjectId, chapterId);
+
   return (
     <div className="pt-20 sm:pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -59,55 +63,70 @@ export default async function ChapterPage({
           </span>
         </div>
 
-        <div className="card p-4 sm:p-6 min-h-[50vh]">
-          <p className="text-xs sm:text-sm text-gray-400 italic mb-4 sm:mb-6">
-            Chapter notes coming soon. This page will contain concept-wise summaries, key formulas, and important questions.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
-            <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
-              <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
-                <span className="text-white">📖</span>
-                Theory Notes
-              </h3>
-              <p className="text-2xs sm:text-sm text-gray-400">
-                Concept-wise summaries with key points.
+        {content ? (
+          <div className="space-y-6 sm:space-y-8">
+            {/* Easy Overview */}
+            <div className="card p-4 sm:p-6 border-l-4 border-l-white">
+              <div className="flex items-center gap-2 mb-3">
+                <Lightbulb size={18} className="text-white shrink-0" />
+                <h2 className="font-heading text-base sm:text-lg">Easy Overview</h2>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                {content.overview}
               </p>
             </div>
 
-            <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
-              <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
-                <span className="text-white">📝</span>
-                PYQs & Practice
-              </h3>
-              <p className="text-2xs sm:text-sm text-gray-400">
-                Previous year questions with solutions.
-              </p>
+            {/* Concepts */}
+            <div className="space-y-4 sm:space-y-6">
+              {content.concepts.map((section, i) => (
+                <div key={i} className="card p-4 sm:p-6">
+                  <h3 className="font-heading text-sm sm:text-lg mb-2 sm:mb-3 text-white">
+                    {section.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed whitespace-pre-line">
+                    {section.body}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            {foundChapter.formulaCount !== undefined && foundChapter.formulaCount > 0 && (
-              <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
-                <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
-                  <span className="text-white">📐</span>
-                  Formulas
-                </h3>
-                <p className="text-2xs sm:text-sm text-gray-400">
-                  {foundChapter.formulaCount} key formulas to master.
-                </p>
+            {/* Key Points */}
+            <div className="card p-4 sm:p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <Target size={18} className="text-white shrink-0" />
+                <h2 className="font-heading text-base sm:text-lg">Key Points</h2>
+              </div>
+              <ul className="space-y-2">
+                {content.keyPoints.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-gray-300">
+                    <span className="text-white mt-0.5 shrink-0">•</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Important Questions */}
+            {content.importantQuestions && content.importantQuestions.length > 0 && (
+              <div className="card p-4 sm:p-6">
+                <h2 className="font-heading text-base sm:text-lg mb-3">Practice Questions</h2>
+                <ul className="space-y-3">
+                  {content.importantQuestions.map((q, i) => (
+                    <li key={i} className="text-xs sm:text-sm text-gray-300 border-l-2 border-gray-600 pl-3">
+                      {q}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
-
-            <div className="p-3 sm:p-4 bg-[#111111] border border-[#333333]">
-              <h3 className="font-heading text-sm sm:text-lg mb-2 flex items-center gap-2">
-                <span className="text-white">🎯</span>
-                Quick Quiz
-              </h3>
-              <p className="text-2xs sm:text-sm text-gray-400">
-                Test your understanding with MCQs.
-              </p>
-            </div>
           </div>
-        </div>
+        ) : (
+          <div className="card p-4 sm:p-6 min-h-[30vh]">
+            <p className="text-xs sm:text-sm text-gray-400 italic">
+              Chapter notes coming soon. This page will contain concept-wise summaries, key formulas, and important questions.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

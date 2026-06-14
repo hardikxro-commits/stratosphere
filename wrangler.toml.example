@@ -1,0 +1,7 @@
+name = "stratosphere"
+pages_build_output_dir = ".vercel/output/static"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "stratosphere-db"
+database_id = ""

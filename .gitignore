@@ -42,6 +42,10 @@ wrangler.toml
 # vercel
 .vercel
 
+# local sqlite db
+dev.db
+dev.db-journal
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
