@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, MessageCircle, Beaker, Home, Target, Menu, X } from "lucide-react";
+import { BookOpen, MessageCircle, Beaker, Home, Target, FolderOpen, Menu, X } from "lucide-react";
 import { useState } from "react";
 import AuthButton from "@/components/AuthButton";
 
@@ -9,6 +9,7 @@ const navLinks = [
   { href: "/", label: "Home", icon: Home },
   { href: "/subjects", label: "Subjects", icon: BookOpen },
   { href: "/pyq", label: "PYQs", icon: Target },
+  { href: "/papers", label: "Papers", icon: FolderOpen },
   { href: "/formulas", label: "Formulas", icon: Beaker },
   { href: "/chatbot", label: "Ask AI", icon: MessageCircle },
 ];
